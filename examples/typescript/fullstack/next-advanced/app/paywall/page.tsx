@@ -18,7 +18,7 @@ function PaymentForm({
   const [isProcessing, setIsProcessing] = useState(false);
 
   const unSignedPaymentHeader = preparePaymentHeader(
-    address,
+    address!,
     1,
     paymentRequirements
   );
@@ -38,7 +38,7 @@ function PaymentForm({
       name: paymentRequirements.extra?.name,
       version: paymentRequirements.extra?.version,
       chainId: getNetworkId(paymentRequirements.network),
-      verifyingContract: paymentRequirements.asset,
+      verifyingContract: paymentRequirements.asset as `0x${string}`,
     },
     primaryType: "TransferWithAuthorization" as const,
     message: unSignedPaymentHeader.payload.authorization,
